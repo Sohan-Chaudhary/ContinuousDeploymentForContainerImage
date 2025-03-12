@@ -35,7 +35,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: sigstore/cosign-installer@v3 #v2.6.0
         with:
-          cosign-release: 'v1.13.1'
+          cosign-release: 'v1.13.3'
           
       - name: Verify Cosign Version and TUF Root Key
         run: |
