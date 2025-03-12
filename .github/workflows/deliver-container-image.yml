@@ -29,6 +29,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Clean Environment
+        run: |
+          rm -rf $HOME/.cosign #remove any previous cosign install.
+          
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
