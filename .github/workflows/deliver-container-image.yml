@@ -28,12 +28,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Clear Cosign Cache and Reset TUF Data
-        run: |
-          rm -rf ~/.sigstore ~/.cache/sigstore
-          export COSIGN_TUF_ROOT="https://tuf-repo-cdn.sigstore.dev"
-          cosign initialize || (sleep 10 && cosign initialize)
     
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
@@ -48,6 +42,12 @@ jobs:
           cosign version
           cosign verify-key --key https://tuf-repo-cdn.sigstore.dev/root.json || echo "TUF key verification failed"
 
+      - name: Clear Cosign Cache and Reset TUF Data
+        run: |
+          rm -rf ~/.sigstore ~/.cache/sigstore
+          export COSIGN_TUF_ROOT="https://tuf-repo-cdn.sigstore.dev"
+          cosign initialize || (sleep 10 && cosign initialize)
+      
       - name: Debug Sigstore TUF Root Status
         run: curl -s https://tuf-repo-cdn.sigstore.dev/root.json | jq 
 
