@@ -47,6 +47,7 @@ jobs:
       - name: Clear Cosign Cache
         run: |
           rm -rf ~/.sigstore # Clear Cosign cache
+          rm -rf ~/.sigstore ~/.cache/sigstore
 
       - name: Initialize Cosign
         run: cosign initialize
