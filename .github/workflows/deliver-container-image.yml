@@ -47,9 +47,6 @@ jobs:
           rm -rf ~/.sigstore ~/.cache/sigstore
           export COSIGN_TUF_ROOT="https://tuf-repo-cdn.sigstore.dev"
           cosign initialize || (sleep 10 && cosign initialize)
-      
-      - name: Debug Sigstore TUF Root Status
-        run: curl -s https://tuf-repo-cdn.sigstore.dev/root.json | jq 
 
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
